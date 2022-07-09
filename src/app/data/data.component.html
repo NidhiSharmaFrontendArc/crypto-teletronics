@@ -1,8 +1,12 @@
 <ul *ngIf='cryptocurrency'>
-    <li (click)='addCrypto(cryptocurrency.id)' class="list-group-item" >
+    <li *ngIf="!popup" class="list-group-item" >
         <span>{{cryptocurrency.id}}</span>
         <span>{{cryptocurrency.priceUsd | mycurrency}}</span>
         <button (click)="deleteCrypto(cryptocurrency.id)" *ngIf="!popup" class="btn btn-outline-dark btn-sm">Remove</button>  
+    </li>
+    <li (click)='addCrypto(cryptocurrency.id)' *ngIf="popup" class="list-group-item" >
+        <span>{{cryptocurrency.id}}</span>
+        <span>{{cryptocurrency.priceUsd | mycurrency}}</span>
     </li>
 </ul>
 

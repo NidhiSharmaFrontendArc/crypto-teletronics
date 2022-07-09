@@ -1,12 +1,12 @@
-version: '3.4'
+version: "2.1"
 
 services:
-  gameconnectdots:
-    image: gameconnectdots
-    build:
-      context: .
-      dockerfile: ./Dockerfile
-    environment:
-      NODE_ENV: production
+  node:
+    container_name: crypto-data-test
+    build: .
     ports:
       - 4200:4200
+    volumes:
+      - "./:/var/www/html"
+    working_dir: /var/www/html
+    command: ng serve --host 0.0.0.0 --poll=2000

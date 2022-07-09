@@ -1,11 +1,13 @@
-FROM node:lts-alpine  AS build
-ENV NODE_ENV=production
-WORKDIR /usr/src/app
-COPY ["package.json", "package-lock.json*", "npm-shrinkwrap.json*", "./"]
-RUN npm install --production --silent && mv node_modules ../
-COPY . .
+FROM node:latest as node
+
+RUN apt-get update && apt-get install -y vim
+
 EXPOSE 4200
-RUN chown -R node /usr/src/app
+
 USER node
-CMD ["ng", "serve", "--host=0.0.0.0"]
-# CMD ["npm", "start"]
+
+RUN mkdir /home/node/.npm-global
+ENV PATH=/home/node/.npm-global/bin:$PATH
+ENV NPM_CONFIG_PREFIX=/home/node/.npm-global
+
+RUN npm install -g @angular/cli
