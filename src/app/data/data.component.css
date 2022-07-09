@@ -1,0 +1,22 @@
+.list-group-item *{
+width: 100%;
+display: inline-block;
+}
+.list-group-item > span {
+    float: left;
+    text-align: left;
+}
+.list-group-item > button {
+    float: right;
+    text-align: center;
+    width: 100px;
+}
+li.list-group-item {
+    width: 100%;
+    margin-bottom: 50px;
+    border-radius: 3px;
+    border: 1px solid #fff;
+    padding: 1rem;
+    display: inline-block;
+}
+

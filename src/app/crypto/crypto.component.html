@@ -1,0 +1,47 @@
+<!-- Top bar & Add button  -->
+<div class="full-width">
+  <div class="container">
+    <div class="row no-gutters">
+      <div class="l-crypto col">Live Crypto [ {{ renderedList?.length || '0' }} ]  </div>
+      <div class="button-crypto col">
+        <button (click)="popup = true" type="button" class="btn btn-dark btn-sm">+
+          Add
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Top bar & Add button  -->
+
+<!-- Main container / Data flow -->
+<div class="container main-crypto">
+  <div class="row no-gutters">
+    <app-data class="col-sm-4" *ngFor='let cryptocurrency of renderedList;let ind = index' app-data
+      [renderedList]="renderedList" [cryptocurrency]="cryptocurrency" [cryptocurrencyData]="cryptocurrencyData"
+      [allData]="allData" [popup]="popup">
+    </app-data>
+  </div>
+</div>
+<!-- Main container / Data flow -->
+
+
+
+
+<!-- Popup start -->
+<div class="overlay" *ngIf="popup"  appOutside (click)="ClickedOut($event)">
+  <div class="popup">
+    <h2>Select Crypto from List [ {{ cryptocurrencyData?.length || '0' }} ] </h2>
+    <span>Click on the blocks to select/add</span>
+    <a class="close" (click)="popup = false">&times;</a>
+    <div class="content container">
+      <div class="row">
+        <div class="col">
+          <app-data *ngFor='let cryptocurrency of cryptocurrencyData' app-data [renderedList]="renderedList"
+            [cryptocurrency]="cryptocurrency" [cryptocurrencyData]="cryptocurrencyData">
+          </app-data>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Popup End -->
